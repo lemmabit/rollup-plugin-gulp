@@ -4,6 +4,10 @@ var createFilter = require('rollup-pluginutils').createFilter,
     File         = require('vinyl');
 
 module.exports = function(stream, options) {
+  if(!stream) {
+    throw new Error("rollup-plugin-gulp must be passed a stream!");
+  }
+  
   options = options || {};
   var filter = createFilter(options.include, options.exclude);
   
