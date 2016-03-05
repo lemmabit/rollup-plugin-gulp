@@ -28,8 +28,8 @@ A chain of gulp plugins can be piped together and used with this syntax:
 ```js
 // rollup.config.js
 import gulpPlugin from 'rollup-plugin-gulp';
-import typescript from 'gulp-typescript';
 import preprocess from 'gulp-preprocess';
+import typescript from 'gulp-typescript';
 
 export default {
   entry: 'main.ts',
