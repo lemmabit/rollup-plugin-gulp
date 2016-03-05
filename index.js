@@ -19,16 +19,18 @@ module.exports = function(stream, options) {
     inStream.pipe(innerStream);
   }
   
-  var outputs = [];
+  var outputs = {};
   var ended = false, error;
   
   function end(err) {
     if(!ended) {
       ended = true;
       error = err || new Error("Stream ended prematurely!");
-      var output;
-      while(output = outputs.pop()) {
-        output.reject(error);
+      for(var key in outputs) {
+        var output = outputs[key];
+        if(typeof output === 'object') {
+          output.reject(error);
+        }
       }
     }
   }
@@ -37,18 +39,21 @@ module.exports = function(stream, options) {
   
   outStream.on('data', function(file) {
     if(!ended) {
-      var output = outputs.pop();
-      if(output.path === file.path) {
+      var output = outputs[file.path];
+      if(output) {
+        outputs[file.path] = false;
         if(file.isBuffer()) {
           output.resolve({
             code: file.contents.toString(),
             map:  file.sourceMap
           });
         } else {
-          end(new Error(file.path + " has non-buffered contents!"));
+          output.reject(new Error(file.path + " has non-buffered contents!"));
         }
-      } else {
-        end(new Error("Output path " + file.path + " does not match input path " + output.path + "!"));
+      } else if(output === false) {
+        end(new Error(file.path + " was output twice!"));
+      } else if(!options.ignoreErroneousPaths) {
+        end(new Error("Erroneous path \"" + file.path + "\"!"));
       }
     }
   });
@@ -61,11 +66,10 @@ module.exports = function(stream, options) {
             reject(error);
           } else {
             var file = new File({path: path, contents: new Buffer(code)});
-            outputs.unshift({
+            outputs[file.path] = {
               resolve: resolve,
-              reject:  reject,
-              path:    file.path
-            });
+              reject:  reject
+            };
             inStream.write(file);
           }
         });
