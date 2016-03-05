@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/Permutatrix/rollup-plugin-gulp/issues"
   },
-  "homepage": "https://github.com/Permutatrix/rollup-plugin-gulp#readme"
+  "homepage": "https://github.com/Permutatrix/rollup-plugin-gulp#readme",
+  "dependencies": {
+    "gulp-sourcemaps": "^1.6.0",
+    "readable-stream": "^2.0.5",
+    "rollup-pluginutils": "^1.3.1",
+    "vinyl": "^1.1.1"
+  }
 }
