@@ -1,0 +1,23 @@
+{
+  "name": "rollup-plugin-gulp",
+  "version": "1.0.0",
+  "description": "allows gulp plugins to be used as Rollup transforms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Permutatrix/rollup-plugin-gulp.git"
+  },
+  "keywords": [
+    "rollup-plugin",
+    "gulp"
+  ],
+  "author": "Permutator <permutatorem@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Permutatrix/rollup-plugin-gulp/issues"
+  },
+  "homepage": "https://github.com/Permutatrix/rollup-plugin-gulp#readme"
+}
