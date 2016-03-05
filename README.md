@@ -21,7 +21,7 @@ export default {
   plugins: [
     gulpPlugin(typescript({noImplicitAny: true}))
   ]
-}
+};
 ```
 
 A chain of gulp plugins can be piped together and used with this syntax:
@@ -41,7 +41,7 @@ export default {
         .pipe(typescript({noImplicitAny: true}))
     )
   ]
-}
+};
 ```
 
 
