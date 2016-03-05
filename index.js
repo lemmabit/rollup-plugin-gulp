@@ -70,11 +70,19 @@ module.exports = function(stream, options) {
             reject(error);
           } else {
             var file = new File({path: path, contents: new Buffer(code)});
-            outputs[file.path] = {
-              resolve: resolve,
-              reject:  reject
-            };
-            inStream.write(file);
+            if(outputs[file.path] === false) {
+              end(new Error(file.path + " was input after being output!"));
+              reject(error);
+            } else if(outputs[file.path] !== undefined) {
+              end(new Error(file.path + " was input twice!"));
+              reject(error);
+            } else {
+              outputs[file.path] = {
+                resolve: resolve,
+                reject:  reject
+              };
+              inStream.write(file);
+            }
           }
         });
       }
