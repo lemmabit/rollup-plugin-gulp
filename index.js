@@ -44,8 +44,8 @@ module.exports = function(stream, options) {
   outStream.on('data', function(file) {
     if(!ended) {
       var output = outputs[file.path];
+      outputs[file.path] = false;
       if(output) {
-        outputs[file.path] = false;
         if(file.isBuffer()) {
           output.resolve({
             code: file.contents.toString(),
