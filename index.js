@@ -3,7 +3,7 @@ var createFilter = require('rollup-pluginutils').createFilter,
     PassThrough  = require('readable-stream').PassThrough,
     File         = require('vinyl');
 
-module.exports = function(stream, options) {
+module.exports = function rollupPluginGulp(stream, options) {
   if(!stream) {
     throw new Error("rollup-plugin-gulp must be passed a stream!");
   }
