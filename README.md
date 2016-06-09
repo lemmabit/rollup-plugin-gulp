@@ -1,13 +1,11 @@
 # rollup-plugin-gulp [![Dependency Status][david-image]][david-url]
-This allows [gulp] plugins to be used as [Rollup] transforms. It supports
-sourcemaps.
+Allows [gulp] plugins to be used as [Rollup] transforms. It supports
+sourcemaps. **Note:** This package doesn't have unit tests yet.
 
 ## Installation
 ```bash
-npm install --save-dev Permutatrix/rollup-plugin-gulp
+npm install --save-dev rollup-plugin-gulp
 ```
-This will install the module from GitHub, since it hasn't been published to
-NPM yet. I still need to write tests. I _hate_ writing tests.
 
 ## Usage
 ```js
