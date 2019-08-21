@@ -94,6 +94,20 @@ const normalizeInputOption = v => {
   else return console.warn('your config is fucked')
 }
 
+/**
+  const badPaths = {
+    app: 'src/app.tsx',
+    sever: 'src/server.ts',
+    other: ['src/server.ts', 'thing.tsx']
+  }
+
+  const badArray = [3, '5']
+  console.log(normalizeInputOption(badPaths)) good
+  console.log(normalizeInputOption(badArray)) good
+
+*/
+
+
 
 
 function GulpRollup(options) {
